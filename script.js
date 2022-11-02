@@ -1,17 +1,29 @@
+const grid = document.querySelector(".grid");
 let cells = [];
-let userDimensions;
-while(!userDimensions){
-    let userPrompt = prompt("Enter grid dimensions (max 100)");
-    if(userPrompt >= 1 && userPrompt <= 100){
-        generateGrid(userPrompt);
-        break;
+generateGrid(16);
+
+let resetBtn = document.querySelector(".resetBtn");
+resetBtn.addEventListener('click', resetGrid);
+
+let newGridBtn = document.querySelector(".newGridBtn");
+newGridBtn.addEventListener('click', (event) => {
+    deleteGrid();
+    generateGrid(getUserDimensions());
+});
+
+//window.addEventListener('resize', resizeGrid);
+
+function getUserDimensions(){
+    let userDimensions;
+    while(!userDimensions){
+        let userDimensions = prompt("Enter grid dimensions (max 100)");
+        if(userDimensions >= 1 && userDimensions <= 1000){
+            return userDimensions;
+        }
     }
 }
 
-cells.forEach(cell => cell.addEventListener('mouseover', cellHovered));
-
-function generateGrid(dimensions = 100){
-    const grid = document.querySelector(".grid");
+function generateGrid(dimensions){
     const squareLength = grid.offsetHeight/dimensions;
     
     for(let x = 0; x < dimensions**2; x++){
@@ -23,6 +35,17 @@ function generateGrid(dimensions = 100){
         grid.appendChild(cell);
         cells.push(cell);
     }
+    grid.style.minWidth = `${squareLength * dimensions}px`;
+    grid.style.minHeight = `${squareLength * dimensions}px`;
+    cells.forEach(cell => cell.addEventListener('mouseover', cellHovered));
+}
+
+function resetGrid(){
+    cells.forEach(cell => cell.style.backgroundColor = "white");
+}
+
+function deleteGrid(){
+    cells.forEach(cell => cell.remove());
 }
 
 function cellHovered(event){
