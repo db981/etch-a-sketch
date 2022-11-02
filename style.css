@@ -1,13 +1,19 @@
 body{
+    display: flex;
+    justify-content: center;
     margin: 0;
     padding: 0;
 }
 .grid{
+    flex: 0 0 auto;
     display:flex;
+    flex-wrap: wrap;
     background-color: gray;
     height: 100vh;
-    width: 100vw;
+    width: 100vh;
 }
 .cell{
+    flex: 1 0 auto;
+    box-sizing: border-box;
     background-color: white;
 }
