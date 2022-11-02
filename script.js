@@ -11,7 +11,7 @@ newGridBtn.addEventListener('click', (event) => {
     generateGrid(getUserDimensions());
 });
 
-//window.addEventListener('resize', resizeGrid);
+window.addEventListener('resize', resizeGrid);
 
 function getUserDimensions(){
     let userDimensions;
@@ -35,9 +35,7 @@ function generateGrid(dimensions){
         grid.appendChild(cell);
         cells.push(cell);
     }
-    grid.style.minWidth = `${squareLength * dimensions}px`;
-    grid.style.minHeight = `${squareLength * dimensions}px`;
-    cells.forEach(cell => cell.addEventListener('mouseover', cellHovered));
+    cells.forEach(cell => cell.addEventListener('mouseover', cellHovered)); 
 }
 
 function resetGrid(){
@@ -46,6 +44,17 @@ function resetGrid(){
 
 function deleteGrid(){
     cells.forEach(cell => cell.remove());
+    cells = [];
+}
+
+function resizeGrid(){
+    console.log("test");
+    const dimensions = Math.sqrt(cells.length);
+    const squareLength = grid.offsetHeight/dimensions;
+    cells.forEach(cell => {
+        cell.style.width = `${squareLength}px`; 
+        cell.style.height = `${squareLength}px`
+    });
 }
 
 function cellHovered(event){
