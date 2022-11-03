@@ -24,7 +24,7 @@ function getUserDimensions(){
 }
 
 function generateGrid(dimensions){
-    const squareLength = grid.offsetHeight/dimensions;
+    const squareLength = Math.floor(grid.offsetHeight/dimensions*10)/10;
     
     for(let x = 0; x < dimensions**2; x++){
         const cell = document.createElement("div");
@@ -50,7 +50,7 @@ function deleteGrid(){
 function resizeGrid(){
     console.log("test");
     const dimensions = Math.sqrt(cells.length);
-    const squareLength = grid.offsetHeight/dimensions;
+    const squareLength = Math.floor(grid.offsetHeight/dimensions*10)/10;
     cells.forEach(cell => {
         cell.style.width = `${squareLength}px`; 
         cell.style.height = `${squareLength}px`

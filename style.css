@@ -5,7 +5,7 @@ body{
     padding: 0;
     background-color: lightgray;
 }
-.controls{
+.left{
     flex: 1 0 0;
     display: flex;
     flex-direction: column;
@@ -15,21 +15,30 @@ button{
     height: 20vh;
     font-size: 36pt;
 }
-.grid{
+.gridContainer{
     height: 100vh;
     width: 100vh;
+    background-color: lightcoral;
+    display: flex;
+    flex: 0 0 auto;
+    justify-content: center;
+    align-items: center;
+}
+.grid{
+    height: 80vh;
+    width: 80vh;
     flex: 0 0 auto;
     display:flex;
     flex-wrap: wrap;
     background-color: gray;
 }
 .cell{
-    flex: 1 0 auto;
+    flex: 0 0 auto;
     background-color: white;
 }
-.colorPicker{
+.right{
     flex: 1 0 0;
     display: flex;
     flex-direction: column;
-    background-color: blue;
+    background-color: red;
 }
