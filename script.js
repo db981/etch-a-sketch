@@ -4,6 +4,10 @@ grid.width = "80vh";
 let cells = [];
 generateGrid(16);
 
+let colorSelector = document.querySelector(".colorSelector");
+let color = colorSelector.value;
+colorSelector.addEventListener("change", (event) => color = event.target.value);
+
 let resetBtn = document.querySelector(".resetBtn");
 resetBtn.addEventListener('click', resetGrid);
 
@@ -61,5 +65,6 @@ function resizeGrid(){
 }
 
 function cellHovered(event){
-    event.target.style.backgroundColor = "black";
+    event.target.style.backgroundColor = color;
+    console.log(color);
 }
