@@ -1,4 +1,6 @@
 const grid = document.querySelector(".grid");
+grid.height = "80vh";
+grid.width = "80vh";
 let cells = [];
 generateGrid(16);
 
@@ -17,15 +19,16 @@ function getUserDimensions(){
     let userDimensions;
     while(!userDimensions){
         let userDimensions = prompt("Enter grid dimensions (max 100)");
-        if(userDimensions >= 1 && userDimensions <= 1000){
+        if(userDimensions >= 1 && userDimensions <= 100){
             return userDimensions;
         }
     }
 }
 
 function generateGrid(dimensions){
-    const squareLength = Math.floor(grid.offsetHeight/dimensions*10)/10;
-    
+    let gridInfo = grid.getBoundingClientRect();
+    const squareLength = gridInfo.height/dimensions;
+
     for(let x = 0; x < dimensions**2; x++){
         const cell = document.createElement("div");
         cell.classList.add('cell');
@@ -48,9 +51,9 @@ function deleteGrid(){
 }
 
 function resizeGrid(){
-    console.log("test");
+    let gridInfo = grid.getBoundingClientRect();
     const dimensions = Math.sqrt(cells.length);
-    const squareLength = Math.floor(grid.offsetHeight/dimensions*10)/10;
+    const squareLength = gridInfo.height/dimensions;
     cells.forEach(cell => {
         cell.style.width = `${squareLength}px`; 
         cell.style.height = `${squareLength}px`
